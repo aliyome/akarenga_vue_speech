@@ -2,6 +2,13 @@ import { MutationTree } from 'vuex';
 import { RootState } from './states';
 import { TranscriptMap, Word } from '@/types';
 
+const clearDisplay = (state: RootState) => {
+  state.errorMessage = '';
+  state.inputText = '';
+  state.checkedWords = [];
+  state.textUnderRecognition = '';
+};
+
 export const mutations: MutationTree<RootState> = {
   setTranscriptMaster: (
     state,
@@ -20,6 +27,7 @@ export const mutations: MutationTree<RootState> = {
   },
   goto: (state, { no }: { no: number }) => {
     state.currentNo = no;
+    clearDisplay(state);
   },
   setIsUsingMicrophone: (
     state,
