@@ -25,3 +25,6 @@ yarn-error.log*
 
 # licensed file
 duo3.json
+
+# firebase
+.firebase
