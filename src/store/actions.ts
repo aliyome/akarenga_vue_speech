@@ -31,10 +31,11 @@ export const actions: ActionTree<RootState, RootState> = {
     return true;
   },
 
-  startRecognition: ({ commit, dispatch }) => {
+  startRecognition: ({ commit, getters, dispatch }) => {
     // setting
+    const lang = getters['isUsingJapaneseRecognition'] ? 'ja-JP' : 'en-US';
     const recognition = new window.SpeechRecognition();
-    recognition.lang = 'en-US';
+    recognition.lang = lang;
     recognition.interimResults = true;
     recognition.continuous = true;
 

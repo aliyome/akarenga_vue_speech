@@ -51,4 +51,7 @@ export const mutations: MutationTree<RootState> = {
   setIsShowingEnglish: (state, { checked }: { checked: boolean }) => {
     state.isShowingEnglish = checked;
   },
+  setIsUsingJapaneseRecognition: (state, { use }: { use: boolean }) => {
+    state.isUsingJapaneseRecognition = use;
+  },
 };

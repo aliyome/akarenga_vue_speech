@@ -43,6 +43,13 @@
         </v-list-item-icon>
       </v-list-item>
 
+      <v-list-item>
+        <v-checkbox
+          v-model="useJapaneseRecognitionModel"
+          label="日本語の音声認識を使ってみる"
+        />
+      </v-list-item>
+
       <v-list-item v-if="inputText.length > 0">正誤：</v-list-item>
       <v-list-item>
         <div style="word-break: break-all;">
@@ -104,6 +111,7 @@ export default Vue.extend({
       'textUnderRecognition',
       'checkedWords',
       'isShowingEnglish',
+      'isUsingJapaneseRecognition',
     ]),
 
     isShowingEnglishModel: {
@@ -114,10 +122,23 @@ export default Vue.extend({
         this.setIsShowingEnglish({ checked: value });
       },
     },
+
+    useJapaneseRecognitionModel: {
+      get() {
+        return this.isUsingJapaneseRecognition;
+      },
+      set(value) {
+        this.setIsUsingJapaneseRecognition({ use: value });
+      },
+    },
   },
 
   methods: {
-    ...mapMutations(['goto', 'setIsShowingEnglish']),
+    ...mapMutations([
+      'goto',
+      'setIsShowingEnglish',
+      'setIsUsingJapaneseRecognition',
+    ]),
     ...mapActions(['fetchMasterData', 'startRecognition', 'stopRecognition']),
 
     gotoNext() {

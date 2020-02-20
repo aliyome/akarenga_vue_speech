@@ -11,6 +11,7 @@ export interface RootState {
   textUnderRecognition: string;
   checkedWords: Word[];
   isShowingEnglish: boolean;
+  isUsingJapaneseRecognition: boolean;
 }
 
 export const dummyTranscript: Transcript = {
@@ -28,4 +29,5 @@ export const initialState: RootState = {
   textUnderRecognition: '',
   checkedWords: [],
   isShowingEnglish: false,
+  isUsingJapaneseRecognition: false,
 };

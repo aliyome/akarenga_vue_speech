@@ -12,4 +12,5 @@ export const getters: GetterTree<RootState, RootState> = {
   textUnderRecognition: state => state.textUnderRecognition,
   checkedWords: state => state.checkedWords,
   isShowingEnglish: state => state.isShowingEnglish,
+  isUsingJapaneseRecognition: state => state.isUsingJapaneseRecognition,
 };
