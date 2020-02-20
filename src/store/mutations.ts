@@ -15,4 +15,7 @@ export const mutations: MutationTree<RootState> = {
   setCurrentNo: (state, { no }: { no: number }) => {
     state.currentNo = no;
   },
+  setLoading: (state, { isLoading }: { isLoading: boolean }) => {
+    state.isLoading = isLoading;
+  },
 };

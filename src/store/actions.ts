@@ -5,6 +5,8 @@ import { TranscriptMap } from '@/types';
 
 export const actions: ActionTree<RootState, RootState> = {
   fetchMasterData: async ({ commit }) => {
+    commit('setLoading', { isLoading: true });
+
     const res = await axios.get('/duo3.json');
     if (res.status != 200) {
       commit('setError', {
@@ -27,6 +29,7 @@ export const actions: ActionTree<RootState, RootState> = {
     const firstNo = Object.keys(transcripts)[0];
     commit('setTranscriptMaster', { transcripts });
     commit('setCurrentNo', { no: firstNo });
+    commit('setLoading', { isLoading: false });
     return true;
   },
 };

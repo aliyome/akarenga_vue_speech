@@ -5,6 +5,7 @@ export interface RootState {
   currentNo: number;
   inputText: string;
   errorMessage?: string;
+  isLoading: boolean;
 }
 
 export const dummyTranscript: Transcript = {
@@ -19,4 +20,5 @@ export const initialState: RootState = {
   },
   inputText: 'Japanese sentence',
   currentNo: 0,
+  isLoading: false,
 };

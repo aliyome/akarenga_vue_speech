@@ -6,4 +6,5 @@ export const getters: GetterTree<RootState, RootState> = {
   currentTranscript: state =>
     state.transcripts[state.currentNo] ?? dummyTranscript,
   inputText: state => state.inputText,
+  isLoading: state => state.isLoading,
 };

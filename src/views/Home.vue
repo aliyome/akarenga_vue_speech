@@ -1,5 +1,7 @@
 <template>
   <div class="home">
+    <v-progress-linear indeterminate v-if="isLoading"></v-progress-linear>
+
     <div>No. {{ currentTranscript.no }}</div>
     <div>日本語 {{ currentTranscript.ja }}</div>
     <div>英語 {{ currentTranscript.en }}</div>
@@ -24,7 +26,7 @@ export default Vue.extend({
     return {};
   },
   computed: {
-    ...mapGetters(['currentNo', 'currentTranscript', 'inputText']),
+    ...mapGetters(['currentNo', 'currentTranscript', 'inputText', 'isLoading']),
   },
 
   methods: {
