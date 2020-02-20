@@ -1,37 +1,77 @@
 <template>
   <div class="home">
     <v-progress-linear indeterminate v-if="isLoading"></v-progress-linear>
+    <v-list>
+      <v-list-item>
+        <h3>No. {{ currentTranscript.no }}</h3>
+      </v-list-item>
 
-    <div>No. {{ currentTranscript.no }}</div>
-    <div>日本語 {{ currentTranscript.ja }}</div>
-    <div>英語 {{ currentTranscript.en }}</div>
-    <textarea />
-    <div>
-      <span>{{ inputText }}</span>
-    </div>
-    <div>
-      <small>{{ textUnderRecognition }}</small>
-    </div>
-    <div>
-      <span v-for="(word, index) in checkedWords" :key="index">
-        <span v-if="word.correct" style="color: darkgray;">{{
-          word.text
-        }}</span>
-        <span v-if="!word.correct" style="color: red;">{{ word.text }}</span>
-        <span>{{ '\xa0' }}</span>
-      </span>
-    </div>
-    <div>
-      <v-btn text v-if="!isUsingMicrophone" @click="startRecognition">🎤</v-btn>
-      <v-btn text v-if="isUsingMicrophone" @click="stopRecognition">❌</v-btn>
-    </div>
-    <div>
-      <v-btn text color="primary" @click="gotoBack">前へ</v-btn>
-      <v-spacer />
-      <v-btn text color="primary" @click="gotoRandom">ランダム</v-btn>
-      <v-spacer />
-      <v-btn text color="primary" @click="gotoNext">次へ</v-btn>
-    </div>
+      <v-list-item>日本語：</v-list-item>
+      <v-list-item>
+        <h3>{{ currentTranscript.ja }}</h3>
+      </v-list-item>
+
+      <v-list-item>英語：</v-list-item>
+      <v-list-item>
+        <h3>{{ currentTranscript.en }}</h3>
+      </v-list-item>
+
+      <v-list-item>
+        <v-list-item-content>
+          <v-textarea
+            auto-grow
+            clearable
+            label="回答入力欄"
+            row-height="1rem"
+            :value="inputText"
+            :placeholder="textUnderRecognition"
+          />
+        </v-list-item-content>
+        <v-list-item-icon style="align-self: center;">
+          <v-btn text v-if="!isUsingMicrophone" @click="startRecognition"
+            >🎤</v-btn
+          >
+          <v-btn text v-if="isUsingMicrophone" @click="stopRecognition"
+            >❌</v-btn
+          >
+        </v-list-item-icon>
+      </v-list-item>
+
+      <v-list-item v-if="inputText.length > 0">正誤：</v-list-item>
+      <v-list-item>
+        <div style="word-break: break-all;">
+          <span v-for="(word, index) in checkedWords" :key="index">
+            <span v-if="word.correct" style="color: darkgray;">{{
+              word.text
+            }}</span>
+            <span v-if="!word.correct" style="color: red;">{{
+              word.text
+            }}</span>
+            <span>{{ '\xa0' }}</span>
+          </span>
+        </div>
+      </v-list-item>
+    </v-list>
+
+    <v-container>
+      <v-row>
+        <v-col>
+          <v-btn text color="primary" @click="gotoBack">前へ</v-btn>
+        </v-col>
+
+        <v-spacer />
+
+        <v-col>
+          <v-btn text color="primary" @click="gotoRandom">ランダム</v-btn>
+        </v-col>
+
+        <v-spacer />
+
+        <v-col>
+          <v-btn text color="primary" @click="gotoNext">次へ</v-btn>
+        </v-col>
+      </v-row>
+    </v-container>
   </div>
 </template>
 
