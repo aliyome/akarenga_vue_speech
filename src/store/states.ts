@@ -1,12 +1,13 @@
-import { Transcript } from '@/types';
+import { Transcript, TranscriptMap } from '@/types';
 
 export interface RootState {
-  transcripts: { [no: number]: Transcript };
+  transcripts: TranscriptMap;
   currentNo: number;
   inputText: string;
+  errorMessage?: string;
 }
 
-const dummyTranscript: Transcript = {
+export const dummyTranscript: Transcript = {
   no: 0,
   ja: '日本語の文章',
   en: 'Japanese sentences',

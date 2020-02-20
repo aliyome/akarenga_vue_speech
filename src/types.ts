@@ -3,3 +3,5 @@ export interface Transcript {
   ja: string;
   en: string;
 }
+
+export type TranscriptMap = { [no: number]: Transcript };

@@ -16,7 +16,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 
 export default Vue.extend({
   name: 'Home',
@@ -26,12 +26,17 @@ export default Vue.extend({
   computed: {
     ...mapGetters(['currentNo', 'currentTranscript', 'inputText']),
   },
-  components: {},
 
   methods: {
+    ...mapActions(['fetchMasterData']),
     goNext() {
       console.log('次へ');
     },
+  },
+
+  // life cycle hooks
+  mounted() {
+    this.fetchMasterData();
   },
 });
 </script>
