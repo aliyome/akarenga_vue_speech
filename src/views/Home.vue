@@ -16,29 +16,15 @@
 
 <script lang="ts">
 import Vue from 'vue';
-
-export interface HomeViewModel {
-  currentTranscript: Transcript;
-  inputText: string;
-}
-
-export interface Transcript {
-  no: number;
-  ja: string;
-  en: string;
-}
+import { mapGetters } from 'vuex';
 
 export default Vue.extend({
   name: 'Home',
-  data(): HomeViewModel {
-    return {
-      currentTranscript: {
-        no: 0,
-        ja: '日本語の文章',
-        en: 'Japanese sentences',
-      },
-      inputText: 'Japanese sentence',
-    };
+  data() {
+    return {};
+  },
+  computed: {
+    ...mapGetters(['currentNo', 'currentTranscript', 'inputText']),
   },
   components: {},
 
