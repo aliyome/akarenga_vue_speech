@@ -30,4 +30,44 @@ export const actions: ActionTree<RootState, RootState> = {
     commit('setLoading', { isLoading: false });
     return true;
   },
+
+  startRecognition: ({ commit }) => {
+    // shim
+    window.SpeechRecognition =
+      // eslint-disable-next-line
+      (window as any)['webkitSpeechRecognition'] || SpeechRecognition;
+
+    // setting
+    const recognition = new window.SpeechRecognition();
+    recognition.lang = 'en-US';
+    recognition.interimResults = true;
+    recognition.continuous = true;
+
+    // callback
+    recognition.onresult = event => {
+      for (let i = event.resultIndex; i < event.results.length; i++) {
+        const transcript = event.results[i][0].transcript;
+        if (event.results[i].isFinal) {
+          commit('setInputText', { text: transcript });
+        } else {
+          commit('setTextUnderRecognition', { text: transcript });
+        }
+      }
+    };
+
+    recognition.onend = () => {
+      commit('setIsUsingMicrophone', { isUsingMicrophone: false });
+    };
+
+    // start
+    recognition.start();
+    commit('setIsUsingMicrophone', { isUsing: true, recognition });
+  },
+
+  stopRecognition: ({ commit, state }) => {
+    if (state.recognition) {
+      state.recognition.stop();
+    }
+    commit('setIsUsingMicrophone', { isUsing: false, recognition: undefined });
+  },
 };

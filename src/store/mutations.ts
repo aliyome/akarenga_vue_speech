@@ -21,4 +21,20 @@ export const mutations: MutationTree<RootState> = {
   goto: (state, { no }: { no: number }) => {
     state.currentNo = no;
   },
+  setIsUsingMicrophone: (
+    state,
+    {
+      isUsing,
+      recognition,
+    }: { isUsing: boolean; recognition: SpeechRecognition },
+  ) => {
+    state.isUsingMicrophone = isUsing;
+    state.recognition = recognition;
+  },
+  setTextUnderRecognition: (state, { text }: { text: string }) => {
+    state.textUnderRecognition = text;
+  },
+  setInputText: (state, { text }: { text: string }) => {
+    state.inputText = text;
+  },
 };

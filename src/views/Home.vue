@@ -10,7 +10,14 @@
       <span>{{ inputText }}</span>
     </div>
     <div>
+      <span>{{ textUnderRecognition }}</span>
+    </div>
+    <div>
       <span style="color: red;">※ここに間違った部分を表示する</span>
+    </div>
+    <div>
+      <v-btn text v-if="!isUsingMicrophone" @click="startRecognition">🎤</v-btn>
+      <v-btn text v-if="isUsingMicrophone" @click="stopRecognition">❌</v-btn>
     </div>
     <div>
       <v-btn text color="primary" @click="gotoBack">前へ</v-btn>
@@ -41,12 +48,14 @@ export default Vue.extend({
       'inputText',
       'isLoading',
       'numOfTranscripts',
+      'isUsingMicrophone',
+      'textUnderRecognition',
     ]),
   },
 
   methods: {
     ...mapMutations(['goto']),
-    ...mapActions(['fetchMasterData']),
+    ...mapActions(['fetchMasterData', 'startRecognition', 'stopRecognition']),
 
     gotoNext() {
       this.navigateTo(this.currentNo + 1);

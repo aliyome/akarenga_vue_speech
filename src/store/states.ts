@@ -6,6 +6,9 @@ export interface RootState {
   inputText: string;
   errorMessage?: string;
   isLoading: boolean;
+  isUsingMicrophone: boolean;
+  recognition?: SpeechRecognition;
+  textUnderRecognition: string;
 }
 
 export const dummyTranscript: Transcript = {
@@ -21,4 +24,6 @@ export const initialState: RootState = {
   inputText: 'Japanese sentence',
   currentNo: 0,
   isLoading: false,
+  isUsingMicrophone: false,
+  textUnderRecognition: '',
 };

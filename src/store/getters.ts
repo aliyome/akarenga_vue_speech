@@ -8,4 +8,6 @@ export const getters: GetterTree<RootState, RootState> = {
   numOfTranscripts: state => Object.keys(state.transcripts).length,
   inputText: state => state.inputText,
   isLoading: state => state.isLoading,
+  isUsingMicrophone: state => state.isUsingMicrophone,
+  textUnderRecognition: state => state.textUnderRecognition,
 };
