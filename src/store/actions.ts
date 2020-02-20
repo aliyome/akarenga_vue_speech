@@ -26,9 +26,7 @@ export const actions: ActionTree<RootState, RootState> = {
       return false;
     }
 
-    const firstNo = Object.keys(transcripts)[0];
     commit('setTranscriptMaster', { transcripts });
-    commit('setCurrentNo', { no: firstNo });
     commit('setLoading', { isLoading: false });
     return true;
   },
