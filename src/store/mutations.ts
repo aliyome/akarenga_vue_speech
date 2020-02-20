@@ -1,6 +1,6 @@
 import { MutationTree } from 'vuex';
 import { RootState } from './states';
-import { TranscriptMap } from '@/types';
+import { TranscriptMap, Word } from '@/types';
 
 export const mutations: MutationTree<RootState> = {
   setTranscriptMaster: (
@@ -36,5 +36,8 @@ export const mutations: MutationTree<RootState> = {
   },
   setInputText: (state, { text }: { text: string }) => {
     state.inputText = text;
+  },
+  setCheckedWords: (state, { words }: { words: Word[] }) => {
+    state.checkedWords = words;
   },
 };

@@ -10,10 +10,16 @@
       <span>{{ inputText }}</span>
     </div>
     <div>
-      <span>{{ textUnderRecognition }}</span>
+      <small>{{ textUnderRecognition }}</small>
     </div>
     <div>
-      <span style="color: red;">※ここに間違った部分を表示する</span>
+      <span v-for="(word, index) in checkedWords" :key="index">
+        <span v-if="word.correct" style="color: darkgray;">{{
+          word.text
+        }}</span>
+        <span v-if="!word.correct" style="color: red;">{{ word.text }}</span>
+        <span>{{ '\xa0' }}</span>
+      </span>
     </div>
     <div>
       <v-btn text v-if="!isUsingMicrophone" @click="startRecognition">🎤</v-btn>
@@ -50,6 +56,7 @@ export default Vue.extend({
       'numOfTranscripts',
       'isUsingMicrophone',
       'textUnderRecognition',
+      'checkedWords',
     ]),
   },
 

@@ -1,4 +1,4 @@
-import { Transcript, TranscriptMap } from '@/types';
+import { Transcript, TranscriptMap, Word } from '@/types';
 
 export interface RootState {
   transcripts: TranscriptMap;
@@ -9,6 +9,7 @@ export interface RootState {
   isUsingMicrophone: boolean;
   recognition?: SpeechRecognition;
   textUnderRecognition: string;
+  checkedWords: Word[];
 }
 
 export const dummyTranscript: Transcript = {
@@ -26,4 +27,5 @@ export const initialState: RootState = {
   isLoading: false,
   isUsingMicrophone: false,
   textUnderRecognition: '',
+  checkedWords: [],
 };
