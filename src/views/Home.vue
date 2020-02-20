@@ -83,6 +83,7 @@ export default Vue.extend({
   // life cycle hooks
   mounted() {
     this.fetchMasterData();
+    this.goto({ no: Number(this.no) });
   },
 
   watch: {
