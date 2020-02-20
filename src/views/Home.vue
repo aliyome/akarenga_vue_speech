@@ -11,10 +11,16 @@
         <h3>{{ currentTranscript.ja }}</h3>
       </v-list-item>
 
-      <v-list-item>英語：</v-list-item>
       <v-list-item>
-        <h3>{{ currentTranscript.en }}</h3>
+        <v-checkbox v-model="isShowingEnglishModel" label="英文を表示する" />
       </v-list-item>
+
+      <template v-if="isShowingEnglish">
+        <v-list-item>英語：</v-list-item>
+        <v-list-item>
+          <h3>{{ currentTranscript.en }}</h3>
+        </v-list-item>
+      </template>
 
       <v-list-item>
         <v-list-item-content>
@@ -97,11 +103,21 @@ export default Vue.extend({
       'isUsingMicrophone',
       'textUnderRecognition',
       'checkedWords',
+      'isShowingEnglish',
     ]),
+
+    isShowingEnglishModel: {
+      get() {
+        return this.isShowingEnglish;
+      },
+      set(value) {
+        this.setIsShowingEnglish({ checked: value });
+      },
+    },
   },
 
   methods: {
-    ...mapMutations(['goto']),
+    ...mapMutations(['goto', 'setIsShowingEnglish']),
     ...mapActions(['fetchMasterData', 'startRecognition', 'stopRecognition']),
 
     gotoNext() {

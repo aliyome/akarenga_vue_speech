@@ -11,4 +11,5 @@ export const getters: GetterTree<RootState, RootState> = {
   isUsingMicrophone: state => state.isUsingMicrophone,
   textUnderRecognition: state => state.textUnderRecognition,
   checkedWords: state => state.checkedWords,
+  isShowingEnglish: state => state.isShowingEnglish,
 };

@@ -10,6 +10,7 @@ export interface RootState {
   recognition?: SpeechRecognition;
   textUnderRecognition: string;
   checkedWords: Word[];
+  isShowingEnglish: boolean;
 }
 
 export const dummyTranscript: Transcript = {
@@ -26,4 +27,5 @@ export const initialState: RootState = {
   isUsingMicrophone: false,
   textUnderRecognition: '',
   checkedWords: [],
+  isShowingEnglish: false,
 };

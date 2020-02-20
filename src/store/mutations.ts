@@ -48,4 +48,7 @@ export const mutations: MutationTree<RootState> = {
   setCheckedWords: (state, { words }: { words: Word[] }) => {
     state.checkedWords = words;
   },
+  setIsShowingEnglish: (state, { checked }: { checked: boolean }) => {
+    state.isShowingEnglish = checked;
+  },
 };
