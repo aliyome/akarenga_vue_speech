@@ -32,11 +32,6 @@ export const actions: ActionTree<RootState, RootState> = {
   },
 
   startRecognition: ({ commit, dispatch }) => {
-    // shim
-    window.SpeechRecognition =
-      // eslint-disable-next-line
-      (window as any)['webkitSpeechRecognition'] || SpeechRecognition;
-
     // setting
     const recognition = new window.SpeechRecognition();
     recognition.lang = 'en-US';
